@@ -16,15 +16,17 @@ while (command = gets.chomp)!= "exit"
 		task_manager.complete(id)
 	when Commands::LIST_ALL
 		all_list = task_manager.obtain_all_list
-		all_list.each{|i| puts i.format_all}
-	 when LIST_GROUPS
-	 	groups_list = task_manager_obtain_groups_list
-	# when LIST_A_GROUP
-	# 	group = command_manager.obtain_string
-	# 	task_manager.list_group(group)
-	# when LIST_DATE
-	# 	date = command_manager.date
-	# 	task_manager.list_date(date)
+		completed_list = task_manager.obtain_completed_list
+		all_list.each{|task| puts task.format_all unless task.completed?}
+		completed_list.each{|task| puts task.format_all}
+	when Commands::LIST_GROUPS
+	 	groups_list = task_manager.obtain_groups_list
+	 	groups_list.each{|group_name| puts task_manager.format_group group_name }
+	when Commands::LIST_A_GROUP
+	 	group_name = command_manager.obtain_string
+	 	puts task_manager.format_group group_name
+	when Commands::LIST_OVERDUE
+	 	
 	when Commands::ARCHIVE
 		task_manager.archive
 	end

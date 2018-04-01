@@ -19,13 +19,21 @@ class TaskManager
 	end
 
 	def obtain_groups_list
-		groups_list = @sets.obtain_groups_list
+		@sets.obtain_groups_list
+	end
+
+	def obtain_completed_list
+		@sets.obtain_completed_list
+	end
+
+	def format_group(group_name)
+		@sets.format_group group_name
 	end
 
 	def complete(id)
 		raise InvalidID unless @tasks_hash.key? id
 		@tasks_hash[id].complete
-		@sets.add_completed(@tasks_hash[id])
+		@sets.add_completed @tasks_hash[id]
 	end
 
 	def archive

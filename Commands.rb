@@ -31,7 +31,7 @@ class Commands
 			elsif @string[4..-1] == " group"
 				@command = LIST_GROUPS
 			elsif @string[4..5] == " +"
-				@string = @string[6..-1]
+				@string = @string[5..-1]
 				@command = LIST_A_GROUP
 			elsif @string[4..-1] == " overdue"
 				@command = LIST_OVERDUE
