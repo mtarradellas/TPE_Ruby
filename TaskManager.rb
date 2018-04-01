@@ -22,6 +22,10 @@ class TaskManager
 		@sets.obtain_groups_list
 	end
 
+	def obtain_dates_list
+	 	obtain_all_list.delete_if{|task| task.due_date.nil?}		
+	end
+
 	def obtain_completed_list
 		@sets.obtain_completed_list
 	end

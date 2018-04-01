@@ -35,15 +35,11 @@ class Commands
 				@command = LIST_A_GROUP
 			elsif @string[4..-1] == " overdue"
 				@command = LIST_OVERDUE
-			elsif @string[4..-1] == " due today"
-				@date = Date.today
-				@command = LIST_DATE
-			elsif @string[4..-1] == " due tomorrow"
-				@date = Date.today.next_day
-				@command = LIST_DATE
 			elsif @string[4..-1] == " due this-week"
 				@date = Date.today
 				@command = LIST_THIS_WEEK
+			elsif @string[4..8] == " due "
+				@command = LIST_DATE
 			end
 
 		elsif @string.start_with? "complete "

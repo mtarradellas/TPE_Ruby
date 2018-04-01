@@ -25,10 +25,19 @@ while (command = gets.chomp)!= "exit"
 	when Commands::LIST_A_GROUP
 	 	group_name = command_manager.obtain_string
 	 	puts task_manager.format_group group_name
+	when Commands::LIST_THIS_WEEK
+		dates_list = task_manager.obtain_dates_list
+		dates_list.each{|task| puts task.format_all if task.due_date >= Date.today && task.due_date.cwday <= 6}
 	when Commands::LIST_OVERDUE
-	 	
+	 	dates_list = task_manager.obtain_dates_list
+	 	dates_list.each{|task| puts task.format_all if task.due_date < Date.today && !task.completed?}
+	 	dates_list.each{|task| puts task.format_all if task.due_date < Date.today && task.completed?}	
+	when Commands::LIST_DATE
+		date = command_manager.obtain_date
+	 	dates_list = task_manager.obtain_dates_list
+	 	dates_list.each{|task| puts task.format_all if task.due_date == date && !task.completed?}
+	 	dates_list.each{|task| puts task.format_all if task.due_date == date && task.completed?}	
 	when Commands::ARCHIVE
 		task_manager.archive
 	end
 end
-

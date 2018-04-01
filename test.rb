@@ -1,3 +1,6 @@
-File.new("pip", "r")
-f = File.new("pip", "r")
-f.close
+require 'date'
+
+date1 = Date.today
+date2 = Date.today.next_day
+
+puts date1 < date2
