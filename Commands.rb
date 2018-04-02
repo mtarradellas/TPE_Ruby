@@ -11,6 +11,8 @@ class Commands
 	LIST_THIS_WEEK = 7
 	COMPLETE = 8
 	ARCHIVE	 = 9
+	SAVE = 10
+	OPEN = 11
 
 	def initialize
 	end
@@ -40,6 +42,7 @@ class Commands
 				@command = LIST_THIS_WEEK
 			elsif @string[4..8] == " due "
 				@command = LIST_DATE
+			else raise InvalidCommand
 			end
 
 		elsif @string.start_with? "complete "
@@ -49,6 +52,14 @@ class Commands
 
 		elsif @string == "ac"
 			@command = ARCHIVE
+
+		elsif @string.start_with? "save "
+			@command = SAVE
+			@string = @string[5..-1]
+
+		elsif @string.start_with? "open "
+			@command = OPEN
+			@string = @string[5..-1]
 
 		else
 			raise InvalidCommand

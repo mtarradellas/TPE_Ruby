@@ -25,11 +25,28 @@ class Task
 		return 1 
 	end
 
+	def ==(other)
+		@id == other.id
+	end
+
+	def eql?(other)
+		self.== other
+	end
+
+	def hash
+		[@id].hash
+	end
+
+	def format_date
+		return " " if @due_date.nil?
+		"#{format('%02d',@due_date.day)}/#{format('%02d',@due_date.month)}/#{@due_date.year}"
+	end
+
 	def format_all
-		"#{@id}  [#{@completed}]  #{@due_date}  #{@group_name}  #{@task_name}"
+		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{format('%-10s',@group_name)}  #{@task_name}"
 	end
 
 	def format_group
-		"#{@id}  [#{@completed}]  #{@due_date}  #{@task_name}\n"		
+		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{@task_name}\n"		
 	end
 end

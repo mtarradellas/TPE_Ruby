@@ -1,0 +1,91 @@
+--- !ruby/object:TaskManager
+tasks_hash:
+  1: &1 !ruby/object:Task
+    task_name: a
+    due_date: 2018-04-02
+    group_name: 
+    completed: 
+    id: 1
+  2: &2 !ruby/object:Task
+    task_name: b
+    due_date: 2018-04-02
+    group_name: 
+    completed: 
+    id: 2
+  3: &3 !ruby/object:Task
+    task_name: c
+    due_date: 2018-04-02
+    group_name: 
+    completed: 
+    id: 3
+  4: &4 !ruby/object:Task
+    task_name: d
+    due_date: 2018-04-03
+    group_name: 
+    completed: 
+    id: 4
+  5: &5 !ruby/object:Task
+    task_name: e
+    due_date: 2018-04-03
+    group_name: 
+    completed: 
+    id: 5
+  6: &6 !ruby/object:Task
+    task_name: f
+    due_date: 2018-04-03
+    group_name: 
+    completed: 
+    id: 6
+  7: &7 !ruby/object:Task
+    task_name: g
+    due_date: 2018-04-07
+    group_name: 
+    completed: 
+    id: 7
+  8: &8 !ruby/object:Task
+    task_name: h
+    due_date: 2018-04-07
+    group_name: 
+    completed: X
+    id: 8
+  9: !ruby/object:Task
+    task_name: i
+    due_date: 2018-04-07
+    group_name: 
+    completed: X
+    id: 9
+  10: &9 !ruby/object:Task
+    task_name: j
+    due_date: 2018-04-08
+    group_name: 
+    completed: X
+    id: 10
+  11: !ruby/object:Task
+    task_name: k
+    due_date: 2018-04-08
+    group_name: 
+    completed: X
+    id: 11
+  12: &10 !ruby/object:Task
+    task_name: kjo
+    due_date: 
+    group_name: 
+    completed: 
+    id: 12
+sets: !ruby/object:Sets
+  all_set: !ruby/object:SortedSet
+    keys: 
+    hash:
+      *1: true
+      *2: true
+      *3: true
+      *4: true
+      *5: true
+      *6: true
+      *7: true
+      *8: true
+      *9: true
+      *10: true
+  groups_hash: !ruby/object:GroupsHash
+    groups_hash: {}
+id_counter: 12

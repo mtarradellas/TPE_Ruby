@@ -11,7 +11,8 @@ class TaskManager
 	def add(task_name, due_date, group_name)
 		@id_counter += 1
 		@tasks_hash[@id_counter] = Task.new(task_name, @id_counter, due_date, group_name)
-		@sets.add(@tasks_hash[@id_counter]) 
+		@sets.add(@tasks_hash[@id_counter])
+		@id_counter 
 	end
 
 	def obtain_all_list
@@ -26,10 +27,6 @@ class TaskManager
 	 	obtain_all_list.delete_if{|task| task.due_date.nil?}		
 	end
 
-	def obtain_completed_list
-		@sets.obtain_completed_list
-	end
-
 	def format_group(group_name)
 		@sets.format_group group_name
 	end
@@ -37,10 +34,31 @@ class TaskManager
 	def complete(id)
 		raise InvalidID unless @tasks_hash.key? id
 		@tasks_hash[id].complete
-		@sets.add_completed @tasks_hash[id]
+		@tasks_hash[id].task_name
 	end
 
 	def archive
 		@sets.archive
+	end
+
+	def dup
+		copy = TaskManager.new
+		copy.tasks_hash = @tasks_hash
+		copy.sets = @sets.dup
+		copy.id_counter = @id_counter
+		copy
+	end
+
+	protected def tasks_hash= (other_hash)
+		other_hash.each_pair{|id, task| @tasks_hash[id] = task}
+		@tasks_hash
+	end
+
+	protected def sets= (other_sets)
+		@sets = other_sets
+	end
+
+	protected def id_counter= (other_id)
+		@id_counter = other_id
 	end
 end

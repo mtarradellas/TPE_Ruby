@@ -1,9 +1,9 @@
 require_relative 'GroupsHash.rb'
 require 'set'
 class Sets
+
 	def initialize
 		@all_set = SortedSet.new
-		@completed_set = SortedSet.new
 		@groups_hash = GroupsHash.new
 	end
 
@@ -12,14 +12,8 @@ class Sets
 		@groups_hash.add(task) unless task.group_name.nil?
 	end
 
-	def add_completed(task)
-		@completed_set << task
-		@groups_hash.add_completed task
-	end
-
 	def archive
-		@all_set.each{|task| @all_set.delete(task) if task.completed?}
-		@completed_set.clear
+		@all_set.delete_if{|task| task.completed?}
 		@groups_hash.archive
 	end
 
@@ -35,7 +29,18 @@ class Sets
 		@groups_hash.format_group group_name
 	end
 
-	def obtain_completed_list
-		@completed_set.dup
+	def dup
+		copy = Sets.new
+		copy.all_set = @all_set.dup
+		copy.groups_hash = @groups_hash.dup
+		copy
+	end
+
+	protected def all_set= (other_all_set)
+		@all_set = other_all_set
+	end
+
+	protected def groups_hash= (other_groups_hash)
+		@groups_hash = other_groups_hash
 	end
 end
