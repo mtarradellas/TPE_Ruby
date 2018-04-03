@@ -28,19 +28,5 @@ class Sets
 	def format_group(group_name)
 		@groups_hash.format_group group_name
 	end
-
-	def dup
-		copy = Sets.new
-		copy.all_set = @all_set.dup
-		copy.groups_hash = @groups_hash.dup
-		copy
-	end
-
-	protected def all_set= (other_all_set)
-		@all_set = other_all_set
-	end
-
-	protected def groups_hash= (other_groups_hash)
-		@groups_hash = other_groups_hash
-	end
+	
 end

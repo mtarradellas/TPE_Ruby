@@ -1,19 +1,18 @@
 require 'yaml'
-require 'io/console'
 require_relative 'TaskManager.rb'
 require_relative 'Commands.rb'
 task_manager = TaskManager.new
 command_manager = Commands.new
 
 def save_file(file_name, task_manager)
-	File.open("#{file_name}.yaml", "w") { |file| file.write(task_manager.to_yaml)}
+	File.open("#{file_name}", "w") { |file| file.write(task_manager.to_yaml)}
 end
 
 def open_file(file_name)
 	YAML.load(File.read("#{file_name}"))
 end
 
-while (command = gets.chomp)!= "exit"
+while (command = (command = gets).gsub(/\s+/, " ").strip) != "exit"
 	command_manager.analize command
 	action = command_manager.obtain_command
 	case action
@@ -63,14 +62,15 @@ while (command = gets.chomp)!= "exit"
 	 	dates_list.each{|task| puts task.format_all if task.due_date == date && task.completed?}	
 	when Commands::ARCHIVE
 		task_manager.archive
-		puts "All completed todos have been archived."
+		puts "All completed todos have been archived!"
 	when Commands::SAVE
 		file = command_manager.obtain_string
 		save_file(file, task_manager)
+		puts "File save successful!"
 	when Commands::OPEN
 		file = command_manager.obtain_string
 		task_manager = open_file file
+		puts "#{file} file opened"
 	end
+
 end
-
-

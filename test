@@ -1,0 +1,127 @@
+--- !ruby/object:TaskManager
+tasks_hash:
+  1: &1 !ruby/object:Task
+    task_name: entrega tp
+    due_date: 2018-04-05
+    group_name: "+po"
+    completed: 
+    id: 1
+  2: &2 !ruby/object:Task
+    task_name: parcial 1
+    due_date: 2018-04-12
+    group_name: "+po"
+    completed: 
+    id: 2
+  3: &3 !ruby/object:Task
+    task_name: tp1
+    due_date: 
+    group_name: "+logica"
+    completed: X
+    id: 3
+  4: &4 !ruby/object:Task
+    task_name: tp2
+    due_date: 
+    group_name: "+logica"
+    completed: X
+    id: 4
+  5: &5 !ruby/object:Task
+    task_name: tp3
+    due_date: 
+    group_name: "+logica"
+    completed: 
+    id: 5
+  6: &6 !ruby/object:Task
+    task_name: tp0
+    due_date: 
+    group_name: "+logica"
+    completed: X
+    id: 6
+  7: &7 !ruby/object:Task
+    task_name: comprar coca
+    due_date: 
+    group_name: 
+    completed: X
+    id: 7
+  8: &8 !ruby/object:Task
+    task_name: devolver libro a lu
+    due_date: 2018-04-03
+    group_name: 
+    completed: 
+    id: 8
+  9: &9 !ruby/object:Task
+    task_name: leer textos
+    due_date: 2018-04-02
+    group_name: "+formacion"
+    completed: 
+    id: 9
+  10: &10 !ruby/object:Task
+    task_name: parcial 1
+    due_date: 2018-04-11
+    group_name: "+logica"
+    completed: 
+    id: 10
+  11: &11 !ruby/object:Task
+    task_name: terminar tps
+    due_date: 
+    group_name: "+po"
+    completed: X
+    id: 11
+  12: &12 !ruby/object:Task
+    task_name: sleep
+    due_date: 2018-04-03
+    group_name: 
+    completed: 
+    id: 12
+  13: &13 !ruby/object:Task
+    task_name: viaje usa
+    due_date: 2018-12-12
+    group_name: 
+    completed: 
+    id: 13
+sets: !ruby/object:Sets
+  all_set: !ruby/object:SortedSet
+    keys: 
+    hash:
+      *1: true
+      *2: true
+      *3: true
+      *4: true
+      *5: true
+      *6: true
+      *7: true
+      *8: true
+      *9: true
+      *10: true
+      *11: true
+      *12: true
+      *13: true
+  groups_hash: !ruby/object:GroupsHash
+    groups_hash:
+      "+po": !ruby/object:SortedSet
+        keys:
+        - *11
+        - *1
+        - *2
+        hash:
+          *1: true
+          *2: true
+          *11: true
+      "+logica": !ruby/object:SortedSet
+        keys:
+        - *3
+        - *4
+        - *5
+        - *6
+        - *10
+        hash:
+          *3: true
+          *4: true
+          *5: true
+          *6: true
+          *10: true
+      "+formacion": !ruby/object:SortedSet
+        keys:
+        - *9
+        hash:
+          *9: true
+id_counter: 13

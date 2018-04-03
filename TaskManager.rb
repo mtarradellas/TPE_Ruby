@@ -41,24 +41,4 @@ class TaskManager
 		@sets.archive
 	end
 
-	def dup
-		copy = TaskManager.new
-		copy.tasks_hash = @tasks_hash
-		copy.sets = @sets.dup
-		copy.id_counter = @id_counter
-		copy
-	end
-
-	protected def tasks_hash= (other_hash)
-		other_hash.each_pair{|id, task| @tasks_hash[id] = task}
-		@tasks_hash
-	end
-
-	protected def sets= (other_sets)
-		@sets = other_sets
-	end
-
-	protected def id_counter= (other_id)
-		@id_counter = other_id
-	end
 end

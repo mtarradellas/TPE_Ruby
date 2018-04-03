@@ -29,13 +29,4 @@ class GroupsHash
 		@groups_hash.keys.dup
 	end
 
-	def dup
-		copy = GroupsHash.new
-		copy.groups_hash = @groups_hash
-		copy
-	end
-
-	protected def groups_hash= (other_groups_hash)
-		other_groups_hash.each_pair{|group_name, group_set| @groups_hash[group_name] = group_set.dup}		
-	end
 end
