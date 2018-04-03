@@ -49,4 +49,9 @@ class Task
 	def format_group
 		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{@task_name}\n"		
 	end
+	
+	def to_s
+	    "Id: #{@id}, Task: #{@task_name}, Due date: #{@due_date}, Group: #{@group_name}, Completed: #{@completed}"
+	end
+	
 end
