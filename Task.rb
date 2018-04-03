@@ -24,19 +24,7 @@ class Task
 		return @due_date <=> other.due_date unless other.due_date.nil?
 		return 1 
 	end
-=begin
-	def ==(other)
-		@id == other.id
-	end
 
-	def eql?(other)
-		self.== other
-	end
-
-	def hash
-		[@id].hash
-	end
-=end
 	def format_date
 		return " " if @due_date.nil?
 		"#{format('%02d',@due_date.day)}/#{format('%02d',@due_date.month)}/#{@due_date.year}"
@@ -49,9 +37,5 @@ class Task
 	def format_group
 		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{@task_name}\n"		
 	end
-	
-	def to_s
-	    "Id: #{@id}, Task: #{@task_name}, Due date: #{@due_date}, Group: #{@group_name}, Completed: #{@completed}"
-	end
-	
+
 end

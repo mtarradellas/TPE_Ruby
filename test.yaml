@@ -1,0 +1,30 @@
+--- !ruby/object:TaskManager
+tasks_hash:
+  1: &1 !ruby/object:Task
+    task_name: aaaa
+    due_date: 
+    group_name: 
+    completed: 
+    id: 1
+  2: &2 !ruby/object:Task
+    task_name: ooooooo
+    due_date: 
+    group_name: 
+    completed: 
+    id: 2
+  3: &3 !ruby/object:Task
+    task_name: wiiiii
+    due_date: 
+    group_name: 
+    completed: 
+    id: 3
+sets: !ruby/object:Sets
+  all_set: !ruby/object:SortedSet
+    keys: 
+    hash:
+      *1: true
+      *2: true
+      *3: true
+  groups_hash: !ruby/object:GroupsHash
+    groups_hash: {}
+id_counter: 3
