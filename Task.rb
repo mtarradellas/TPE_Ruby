@@ -24,7 +24,7 @@ class Task
 		return @due_date <=> other.due_date unless other.due_date.nil?
 		return 1 
 	end
-
+=begin
 	def ==(other)
 		@id == other.id
 	end
@@ -36,7 +36,7 @@ class Task
 	def hash
 		[@id].hash
 	end
-
+=end
 	def format_date
 		return " " if @due_date.nil?
 		"#{format('%02d',@due_date.day)}/#{format('%02d',@due_date.month)}/#{@due_date.year}"
