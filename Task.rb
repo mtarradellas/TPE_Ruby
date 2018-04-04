@@ -27,15 +27,18 @@ class Task
 
 	def format_date
 		return " " if @due_date.nil?
+		return "Today" if @due_date == Date.today
+		return "Tomorrow" if @due_date == Date.today + 1
+		return "Yesterday" if @due_date == Date.today - 1
 		"#{format('%02d',@due_date.day)}/#{format('%02d',@due_date.month)}/#{@due_date.year}"
 	end
 
 	def format_all
-		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{format('%-10s',@group_name)}  #{@task_name}"
+		"#{format('%-3s',@id)}  [#{format('%-1s',@completed)}]  #{format('%-10s',format_date)}  #{format('%-10s',@group_name)}  #{@task_name}"
 	end
 
 	def format_group
-		"#{format('%-3s',@id)}  [#{@completed}]  #{format('%-10s',format_date)}  #{@task_name}\n"		
+		"#{format('%-3s',@id)}  [#{format('%-1s',@completed)}]  #{format('%-10s',format_date)}  #{@task_name}\n"		
 	end
 
 end

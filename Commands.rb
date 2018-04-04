@@ -1,4 +1,8 @@
 require 'date'
+require_relative 'InvalidCommandException.rb'
+require_relative 'InvalidDateException.rb'
+require_relative 'InvalidTaskException.rb'
+
 class Commands
 	attr_reader :date
 
@@ -47,7 +51,7 @@ class Commands
 
 		elsif @string.start_with? "complete "
 			@string = @string[9..-1]
-			raise InvalidID unless @string.length == @string.to_i.to_s.length
+			raise InvalidTask unless @string.length == @string.to_i.to_s.length
 			@command = COMPLETE
 
 		elsif @string == "ac"
@@ -68,7 +72,9 @@ class Commands
 	end
 
 	def obtain_date
-		idx = @string.index " due "
+#		idx = @string.length - (@string.reverse.index(' eud ') + 5) 
+		idx = @string.index ' due '
+		
 		unless idx.nil?
 			@date = @string[idx+5..-1]
 			@string = @string[0...idx]
@@ -79,8 +85,8 @@ class Commands
 
 	def validate_date
 		return @date = Date.today if @date == "today"
-		return @date = Date.today.prev_day if @date == "yesterday"
-		return @date = Date.today.next_day if @date == "tomorrow"
+		return @date = Date.today - 1 if @date == "yesterday"
+		return @date = Date.today + 1 if @date == "tomorrow"
 
 		raise InvalidDate unless @date.length == 10
 		raise InvalidDate if (/\d{2}\/\d{2}\/\d{4}/ =~ @date).nil?
@@ -97,7 +103,7 @@ class Commands
 	def obtain_group
 		if @string.start_with? "+"
 			group_end = @string.index(" ")
-			raise InvalidGroup if group_end == 1
+			raise InvalidTask if (group_end.nil? || group_end == 1)
 			group = @string[0...group_end]
 			@string = @string[group_end+1..-1]
 			return group
@@ -106,6 +112,7 @@ class Commands
 	end
 
 	def obtain_string
+		raise InvalidTask if (@string.start_with? "due " || @string == "due")
 		@string
 	end
 

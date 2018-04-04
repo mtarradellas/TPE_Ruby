@@ -32,13 +32,15 @@ class TaskManager
 	end
 
 	def complete(id)
-		raise InvalidID unless @tasks_hash.key? id
+		raise InvalidTask unless @tasks_hash.key? id
+		return nil if @tasks_hash[id].completed?
 		@tasks_hash[id].complete
 		@tasks_hash[id].task_name
 	end
 
 	def archive
 		@sets.archive
+		@tasks_hash.delete_if{|task| @tasks_hash[task].completed?}
 	end
 
 end
