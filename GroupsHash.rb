@@ -15,10 +15,12 @@ class GroupsHash
 	end
 
 	def archive
-		@groups_hash.each_value{|group| group.delete_if{|task| task.completed?}}
+		@groups_hash.each_value{|group_set| group_set.delete_if{|task| task.completed?}}
+		@groups_hash.delete_if{|group_name, group_set| group_set.empty?}
 	end
 
 	def format_group(group_name)
+		raise InvalidCommand unless @groups_hash.key? group_name
 		format_string = group_name[1..-1] + "\n"
 		@groups_hash[group_name].each{|task| format_string = format_string + task.format_group unless task.completed?}
 		@groups_hash[group_name].each{|task| format_string = format_string + task.format_group if task.completed?}

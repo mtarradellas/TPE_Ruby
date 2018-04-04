@@ -17,6 +17,7 @@ class Task
 	end
 
 	def <=>(other)
+	
 		if @due_date.nil?
 			return @id <=> other.id if other.due_date.nil?
 			return -1

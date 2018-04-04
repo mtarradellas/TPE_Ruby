@@ -4,7 +4,6 @@ require_relative 'InvalidDateException.rb'
 require_relative 'InvalidTaskException.rb'
 
 class Commands
-	attr_reader :date
 
 	ADD = 1
 	LIST_ALL = 2
@@ -17,6 +16,10 @@ class Commands
 	ARCHIVE	 = 9
 	SAVE = 10
 	OPEN = 11
+
+	@string
+	@command
+	@date
 
 	def initialize
 	end
@@ -72,9 +75,8 @@ class Commands
 	end
 
 	def obtain_date
-#		idx = @string.length - (@string.reverse.index(' eud ') + 5) 
-		idx = @string.index ' due '
-		
+
+		idx = @string.index ' due '		
 		unless idx.nil?
 			@date = @string[idx+5..-1]
 			@string = @string[0...idx]
@@ -112,7 +114,7 @@ class Commands
 	end
 
 	def obtain_string
-		raise InvalidTask if (@string.start_with? "due " || @string == "due")
+		raise InvalidTask if (@string.start_with? "due " or @string == "due")
 		@string
 	end
 
